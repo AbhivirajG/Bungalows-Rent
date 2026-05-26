@@ -172,7 +172,19 @@
   <!-- ═══════════════════════════════════════════════════════
        HERO
   ═══════════════════════════════════════════════════════ -->
-  <header class="max-w-container-max mx-auto px-gutter pt-32 pb-section-padding-lg flex flex-col items-center text-center" id="hero">
+  <header class="relative w-full overflow-hidden" id="hero">
+
+    <!-- Background building image with desaturated overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="images/building-exterior.jpg"
+           class="w-full h-full object-cover"
+           style="filter: grayscale(40%) brightness(1.05);"
+           alt="">
+      <div class="absolute inset-0" style="background: rgba(251,249,248,0.82);"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-container-max mx-auto px-gutter pt-32 pb-section-padding-lg flex flex-col items-center text-center">
 
     <span class="hero-line font-label-caps text-label-caps text-secondary mb-6 block uppercase tracking-widest">
       Ahmedabad's Premier Address
@@ -250,6 +262,8 @@
 
       </div>
     </div>
+
+    </div><!-- end content wrapper -->
   </header>
 
 
