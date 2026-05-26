@@ -88,7 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
 
-  /* ── 7. Form Submission ───────────────────────────────────── */
+  /* ── 7. Form Submission → Supabase ───────────────────────── */
+  const { createClient } = supabase;
+  const db = createClient(
+    'https://vcwkqkghfjsulsnuvdzy.supabase.co',
+    'sb_publishable_YRiSQ98nqhetj9D4IGwIag_7kClHVkg'
+  );
+
   const form        = document.getElementById('enquiry-form');
   const formWrap    = document.getElementById('form-wrap');
   const formSuccess = document.getElementById('form-success');
@@ -99,10 +105,20 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.textContent = 'Sending…';
     btn.disabled    = true;
 
-    // Simulate async — swap with real API call when ready
-    await new Promise(r => setTimeout(r, 1400));
+    const { error } = await db.from('enquiries').insert({
+      name:  document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim() || null,
+    });
 
-    formWrap.style.display    = 'none';
+    if (error) {
+      console.error('Supabase error:', error.message);
+      btn.textContent = 'Something went wrong — please try again.';
+      btn.disabled    = false;
+      return;
+    }
+
+    formWrap.style.display = 'none';
     formSuccess.classList.add('show');
   });
 
