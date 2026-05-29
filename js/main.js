@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+    gtag('event', 'lead_form_submit', { 'send_to': 'AW-18190056053' });
     formWrap.style.display = 'none';
     formSuccess.classList.add('show');
   });
