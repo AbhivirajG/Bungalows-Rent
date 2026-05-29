@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
     formWrap.style.display = 'none';
     formSuccess.classList.add('show');
   });
